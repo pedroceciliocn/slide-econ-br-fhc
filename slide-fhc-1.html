@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Governos FHC 1995-2002</title>
+    <meta charset="utf-8" />
+    <meta name="date" content="2020-10-13" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="footer-header.css" type="text/css" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Governos FHC 1995-2002
+## <br/>Seminário da disciplina Economia Brasileira
+### UNIVASF
+### 2020-10-13
+
+---
+
+layout: true
+  
+&lt;div class="my-header"&gt;&lt;/div&gt;
+
+&lt;div class="my-footer"&gt;&lt;span&gt;Economia Brasileira    
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+Administração - UNIVASF&lt;/span&gt;&lt;/div&gt; 
+
+---
+
+
+
+
+# Governos FHC 1995-2002
+## Apresentado por:
+  * Amanda Madeiro
+  * Carlos Eduardo    
+  * Jéssica Moreira
+  * Michaela Samata
+  * Pedro Cecílio
+---
+
+# Governo Fernando Henrique Cardoso
+* Fatores que garantiram a eleição do ex-Ministro da Fazenda para o cargo de Presidente da República:
+  * O sucesso do Plano Real, que trouxe um contexto favorável, com crescimento da demanda e do poder aquisitivo.
+* Principais características do primeiro mandato:
+  * Busca pela estabilização e reformas econômicas;
+  * Desequilíbrio externo e fiscal.
+* No segundo mandato:
+  * Ajustamento fiscal e externo;
+  * Mudanças na condução da política macroeconômica.
+---
+
+# Governo Fernando Henrique Cardoso
+* Contribuições dos governos FHC:
+  * Reforma do Estado;
+  * Maior transparência da gestão pública;
+  * Descentralização na provisão dos serviços públicos;
+  * Arcabouço regulatório;
+  * Consolidação do sistema financeiro e sua adaptação ao quadro de baixa inflação;
+  * Abertura econômica;
+  * Compromisso dos diversos atores econômicos com a estabilidade monetária.
+---
+# Governo Fernando Henrique Cardoso
+* Apesar das contribuições...
+  * &lt;span style="color: red;"&gt;Vários desequilíbrios;&lt;/span&gt;
+  * &lt;span style="color: red;"&gt;O país manteve baixas taxas de investimento e crescimento;&lt;/span&gt;
+  * &lt;span style="color: red;"&gt;Instabilidade (cenário externo conturbado e crises internacionais).&lt;/span&gt;
+---
+## Primeiro mandato de FHC (1995-1998)
+&gt;* **&lt;span style="color: red;"&gt;Desequilíbrio no setor externo&lt;/span&gt;**
+&gt;  * Valorização cambial + juros altos + estabilização = estímulo para entrada de recursos externos no país;
+&gt;  * O Banco Central adotou **política cambial** com **taxa de câmbio fixa para &gt;cima** e **flexível para baixo**;
+&gt;  * A possibilidade de importação força os preços internos a se acomodarem aos preços internacionais;
+&gt;    * Essa estratégia é eficiente para os **bens *tradeables*** (importáveis e exportáveis) mas ineficiente para os ***non-tradeables*** (setor de serviços, que não se pode importar) que tendem a continuar subindo.
+---
+
+```
+## # A tibble: 16 x 2
+##    Item                                      `%`
+##    &lt;chr&gt;                                   &lt;dbl&gt;
+##  1 Índice de Preços por Atacado - OG        22.8
+##  2 Índice de Preços ao Consumidor - Brasil  55.0
+##  3 Gêneros Alimentícios                     20.9
+##  4 Alimentação Fora do Domicílio            48.1
+##  5 Aluguel                                 198. 
+##  6 Roupas de Cama, Mesa e Banho             18.1
+##  7 Material Escolar                         36.4
+##  8 Educação - Cursos Formais               132. 
+##  9 Equipamentos Eletrônicos                 11.2
+## 10 Serviços de Residência                   66.6
+## 11 Roupas                                   29.0
+## 12 Serviços de Vestuário                    92.9
+## 13 Medicamentos                             39.4
+## 14 Médico, Dentista e Outros                92.5
+## 15 Peças e Acessórios - Veículos            14.0
+## 16 Serviços de Oficina                      28.9
+```
+---
+## Usando tabulizer para extrair uma tabela de um livro em PDF 1
+
+```r
+library("tidyverse")
+library("tabulizer")
+location &lt;- 'E:/Users/pedro/Downloads/Economia Brasileira Contemporânea 8 fhc grafico 1.pdf'
+out &lt;- extract_tables(location, encoding = "UTF-8")
+```
+---
+## Usando tabulizer para extrair uma tabela de um livro em PDF 2
+
+```r
+final &lt;- do.call(rbind, out[-length(out)])
+```
+---
+
+```r
+# table headers get extracted as rows with bad formatting. Dump them.
+final &lt;- as.data.frame(final[4:nrow(final), ])
+
+# Column names
+headers &lt;- c('Item', '%', 'Item', '%')
+
+# Apply custom column names
+names(final) &lt;- headers
+```
+---
+
+```r
+head(final)
+```
+
+```
+##                            Item      %                          Item     %
+## 1          Gêneros Alimentícios  20,93                        Roupas 29,01
+## 2 Alimentação Fora do Domicílio  48,14         Serviços de Vestuário 92,94
+## 3                       Aluguel 198,12                  Medicamentos 39,36
+## 4  Roupas de Cama, Mesa e Banho  18,12     Médico, Dentista e Outros 92,46
+## 5                                                                         
+## 6              Material Escolar  36,41 Peças e Acessórios – Veículos 14,01
+##                                                                                                NA
+## 1                                                                                                
+## 2                                             Gráfico 23.1 Taxa de câmbio nominal e deflacionada.
+## 3                A apreciação cambial, combinada com a demanda aquecida, levou ao aparecimento de
+## 4 déficits na balança comercial, tanto pelo aumento significativo das importações como pelo fraco
+## 5   desempenho das exportações (ver Tabela 23.2 e Gráfico 23.2). Os superávits comerciais do país
+## 6
+```
+
+
+---
+
+
+```r
+library(rJava)      # Needed for tabulizer
+library(tabulizer)  # Handy tool for PDF Scraping
+library(tidyverse)  # Core data manipulation and visualization libraries
+```
+
+
+---
+
+
+```r
+# PDF Scrape Tables
+endangered_tabela_1_fhc_scrape &lt;- extract_tables(
+    file   = "E:/Users/pedro/Downloads/Economia Brasileira Contemporânea 8 fhc grafico 1.pdf", 
+    method = "decide", 
+    output = "data.frame", encoding = "UTF-8")
+```
+
+
+---
+
+
+```r
+# Pluck the first table in the list
+endangered_tabela_1_fhc_scrape_raw_tbl &lt;- endangered_tabela_1_fhc_scrape %&gt;% 
+    pluck(1) %&gt;% 
+    as_tibble()
+```
+
+---
+
+
+```r
+# Show first 6 rows
+(endangered_tabela_1_fhc_scrape_raw_tbl %&gt;% select(-X) -&gt; endangered_tabela_1_fhc_scrape_raw_tbl)
+```
+
+```
+## # A tibble: 8 x 4
+##   Item                                X.       Item.1                     X..1  
+##   &lt;chr&gt;                               &lt;chr&gt;    &lt;chr&gt;                      &lt;chr&gt; 
+## 1 "Índice de Preços por Atacado – OG" "22,88"  "Equipamentos Eletrônicos" "11,2~
+## 2 "Índice de Preços ao Consumidor – ~ "55,04"  "Serviços de Residência"   "66,5~
+## 3 "Gêneros Alimentícios"              "20,93"  "Roupas"                   "29,0~
+## 4 "Alimentação Fora do Domicílio"     "48,14"  "Serviços de Vestuário"    "92,9~
+## 5 "Aluguel"                           "198,12" "Medicamentos"             "39,3~
+## 6 "Roupas de Cama, Mesa e Banho"      "18,12"  "Médico, Dentista e Outro~ "92,4~
+## 7 ""                                  ""       ""                         ""    
+## 8 "Material Escolar"                  "36,41"  "Peças e Acessórios – Veí~ "14,0~
+```
+
+---
+#### Variação de preços acumulada - agosto/1994 a janeiro/1997 - itens selecionados.
+&lt;table class="table table-striped" style="font-size: 15px; margin-left: auto; margin-right: auto;"&gt;
+&lt;caption style="font-size: initial !important;"&gt;Tabela 1 (pesquisar como deixar mais bonito)&lt;sup&gt;1&lt;/sup&gt;&lt;/caption&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Item &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; % &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Item &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; % &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Índice de Preços por Atacado – OG &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22,88 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Equipamentos Eletrônicos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11,25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Índice de Preços ao Consumidor – Brasil &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 55,04 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Serviços de Residência &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 66,58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gêneros Alimentícios &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 20,93 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Roupas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 29,01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Alimentação Fora do Domicílio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 48,14 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Serviços de Vestuário &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 92,94 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Aluguel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 198,12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Medicamentos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 39,36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Roupas de Cama, Mesa e Banho &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 18,12 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Médico, Dentista e Outros &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 92,46 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Material Escolar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 36,41 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Peças e Acessórios – Veículos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14,01 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;tfoot&gt;
+&lt;tr&gt;
+&lt;td style = 'padding: 0; border:0;' colspan='100%'&gt;&lt;sup&gt;1&lt;/sup&gt; Fonte: Economia Brasileira Contemporânea, p.580-581&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td style = 'padding: 0; border:0;' colspan='100%'&gt;&lt;sup&gt;2&lt;/sup&gt; Tá errado mas foda-se por enquanto&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tfoot&gt;
+&lt;/table&gt;
+##### Observe que:
+  * Preço dos alimentos aumentou 20%, enquanto que comer fora de casa 50%;
+  * Serviços de oficina mais caros que as peças.
+---
+## separando a tabela Item e X. e salvando.
+
+```r
+#separando as tabelas
+endangered_tabela_1_fhc_scrape_raw_tbl %&gt;% 
+  select(Item, X.) -&gt; tabela_1_fhc_p1
+```
+
+---
+## separando a tabela Item.1 e X..1 e salvando.
+
+```r
+endangered_tabela_1_fhc_scrape_raw_tbl %&gt;% 
+  select(Item.1, X..1) -&gt; tabela_1_fhc_p2
+```
+
+---
+## juntando as duas tabelas
+
+```r
+(full_join(tabela_1_fhc_p1, tabela_1_fhc_p2, by = c("Item" = "Item.1", "X." = "X..1")) -&gt; tabela_1_fhc_f1)
+```
+
+```
+## # A tibble: 15 x 2
+##    Item                                      X.      
+##    &lt;chr&gt;                                     &lt;chr&gt;   
+##  1 "Índice de Preços por Atacado – OG"       "22,88" 
+##  2 "Índice de Preços ao Consumidor – Brasil" "55,04" 
+##  3 "Gêneros Alimentícios"                    "20,93" 
+##  4 "Alimentação Fora do Domicílio"           "48,14" 
+##  5 "Aluguel"                                 "198,12"
+##  6 "Roupas de Cama, Mesa e Banho"            "18,12" 
+##  7 ""                                        ""      
+##  8 "Material Escolar"                        "36,41" 
+##  9 "Equipamentos Eletrônicos"                "11,25" 
+## 10 "Serviços de Residência"                  "66,58" 
+## 11 "Roupas"                                  "29,01" 
+## 12 "Serviços de Vestuário"                   "92,94" 
+## 13 "Medicamentos"                            "39,36" 
+## 14 "Médico, Dentista e Outros"               "92,46" 
+## 15 "Peças e Acessórios – Veículos"           "14,01"
+```
+
+---
+#### Variação de preços acumulada - agosto/1994 a janeiro/1997 - itens selecionados.
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Item &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; % &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Serviços de Vestuário &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 92,94 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Médico, Dentista e Outros &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 92,46 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Serviços de Residência &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 66,58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Índice de Preços ao Consumidor – Brasil &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 55,04 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Alimentação Fora do Domicílio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 48,14 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Medicamentos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 39,36 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Material Escolar &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 36,41 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Roupas &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 29,01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Índice de Preços por Atacado – OG &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 22,88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Gêneros Alimentícios &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 20,93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Aluguel &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 198,12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Roupas de Cama, Mesa e Banho &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 18,12 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Peças e Acessórios – Veículos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 14,01 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Equipamentos Eletrônicos &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 11,25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="libs/remark-latest.min.js"></script>
+<script src="macro.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"slideNumberFormat": "%current%/%total%"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

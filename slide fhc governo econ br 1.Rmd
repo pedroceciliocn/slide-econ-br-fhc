@@ -1,0 +1,24 @@
+---
+title: "Governos FHC 1995-2002"
+subtitle: "⚔<br/>Seminário da disciplina Economia Brasileira"
+author: "Yihui Xie"
+institute: "RStudio, PBC"
+date: "2016/12/12 (updated: `r Sys.Date()`)"
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    chakra: libs/remark-latest.min.js
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+# Governos FHC 1995-2002
+## Apresentado por:
+  * Amanda Madeiro
+  * Carlos Eduardo    
+  * Jéssica Moreira
+  * Michaela Samara
+  * Pedro Neto

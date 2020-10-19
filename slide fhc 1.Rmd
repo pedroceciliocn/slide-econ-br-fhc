@@ -1,0 +1,230 @@
+---
+title: "Governos FHC 1995-2002"
+subtitle: "<br/>Seminário da disciplina Economia Brasileira"  
+
+institute: "UNIVASF"
+date: '`r Sys.Date()`'
+encoding: "UTF-8"
+output:
+  xaringan::moon_reader:
+    seal: true
+    chakra: libs/remark-latest.min.js
+    lib_dir: libs
+    css: [xaringan-themer.css, "footer-header.css", custom.css]
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macro.js"
+      slideNumberFormat: "%current%/%total%"
+---
+layout: true
+  
+<div class="my-header"></div>
+
+<div class="my-footer"><span>Economia Brasileira    
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+Administração - UNIVASF</span></div> 
+
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#13b042",
+  secondary_color = "#ffd51c",
+  inverse_header_color = "#f4f7ed"
+)
+```
+
+# Governos FHC 1995-2002
+## Apresentado por:
+  * Amanda Madeiro
+  * Carlos Eduardo    
+  * Jéssica Moreira
+  * Michaela Samara
+  * Pedro Cecílio
+---
+
+# Governo Fernando Henrique Cardoso
+* Fatores que garantiram a eleição do ex-Ministro da Fazenda para o cargo de Presidente da República:
+  * O sucesso do Plano Real, que trouxe um contexto favorável, com crescimento da demanda e do poder aquisitivo.
+* Principais características do primeiro mandato:
+  * Busca pela estabilização e reformas econômicas;
+  * Desequilíbrio externo e fiscal.
+* No segundo mandato:
+  * Ajustamento fiscal e externo;
+  * Mudanças na condução da política macroeconômica.
+---
+
+# Governo Fernando Henrique Cardoso
+* Contribuições dos governos FHC:
+  * Reforma do Estado;
+  * Maior transparência da gestão pública;
+  * Descentralização na provisão dos serviços públicos;
+  * Arcabouço regulatório;
+  * Consolidação do sistema financeiro e sua adaptação ao quadro de baixa inflação;
+  * Abertura econômica;
+  * Compromisso dos diversos atores econômicos com a estabilidade monetária.
+---
+# Governo Fernando Henrique Cardoso
+* Apesar das contribuições...
+  * <span style="color: red;">Vários desequilíbrios;</span>
+  * <span style="color: red;">O país manteve baixas taxas de investimento e crescimento;</span>
+  * <span style="color: red;">Instabilidade (cenário externo conturbado e crises internacionais).</span>
+---
+## Primeiro mandato de FHC (1995-1998)
+>* **<span style="color: red;">Desequilíbrio no setor externo</span>**
+>  * Valorização cambial + juros altos + estabilização = estímulo para entrada de recursos externos no país;
+>  * O Banco Central adotou **política cambial** com **taxa de câmbio fixa para >cima** e **flexível para baixo**;
+>  * A possibilidade de importação força os preços internos a se acomodarem aos preços internacionais;
+>    * Essa estratégia é eficiente para os **bens *tradeables*** (importáveis e exportáveis) mas ineficiente para os ***non-tradeables*** (setor de serviços, que não se pode importar) que tendem a continuar subindo.
+---
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library("tidyverse")
+tibble("Item" = c("Índice de Preços por Atacado - OG", 
+                  "Índice de Preços ao Consumidor - Brasil",
+                  "Gêneros Alimentícios", 
+                  "Alimentação Fora do Domicílio", 
+                  "Aluguel", 
+                  "Roupas de Cama, Mesa e Banho", 
+                  "Material Escolar", 
+                  "Educação - Cursos Formais", 
+                  "Equipamentos Eletrônicos", 
+                  "Serviços de Residência", 
+                  "Roupas", 
+                  "Serviços de Vestuário", 
+                  "Medicamentos", 
+                  "Médico, Dentista e Outros", 
+                  "Peças e Acessórios - Veículos", 
+                  "Serviços de Oficina"), 
+       "%" = c(22.8, 
+               55.04,
+               20.93,
+               48.14,
+               198.12,
+               18.12,
+               36.41,
+               132.13,
+               11.25,
+               66.58,
+               29.01,
+               92.94,
+               39.36,
+               92.46,
+               14.01,
+               28.94))
+```
+---
+## Usando tabulizer para extrair uma tabela de um livro em PDF 1
+```{r}
+library("tidyverse")
+library("tabulizer")
+location <- 'E:/Users/pedro/Downloads/Economia Brasileira Contemporânea 8 fhc grafico 1.pdf'
+out <- extract_tables(location, encoding = "UTF-8")
+```
+---
+## Usando tabulizer para extrair uma tabela de um livro em PDF 2
+```{r}
+final <- do.call(rbind, out[-length(out)])
+
+```
+---
+```{r}
+
+# table headers get extracted as rows with bad formatting. Dump them.
+final <- as.data.frame(final[4:nrow(final), ])
+
+# Column names
+headers <- c('Item', '%', 'Item', '%')
+
+# Apply custom column names
+names(final) <- headers
+
+```
+---
+```{r}
+head(final)
+```
+
+
+---
+
+```{r}
+library(rJava)      # Needed for tabulizer
+library(tabulizer)  # Handy tool for PDF Scraping
+library(tidyverse)  # Core data manipulation and visualization libraries
+```
+
+
+---
+
+```{r}
+# PDF Scrape Tables
+endangered_tabela_1_fhc_scrape <- extract_tables(
+    file   = "E:/Users/pedro/Downloads/Economia Brasileira Contemporânea 8 fhc grafico 1.pdf", 
+    method = "decide", 
+    output = "data.frame", encoding = "UTF-8")
+```
+
+
+---
+
+```{r}
+# Pluck the first table in the list
+endangered_tabela_1_fhc_scrape_raw_tbl <- endangered_tabela_1_fhc_scrape %>% 
+    pluck(1) %>% 
+    as_tibble()
+
+```
+
+---
+
+```{r}
+# Show first 6 rows
+(endangered_tabela_1_fhc_scrape_raw_tbl %>% select(-X) -> endangered_tabela_1_fhc_scrape_raw_tbl)
+```
+
+---
+#### Variação de preços acumulada - agosto/1994 a janeiro/1997 - itens selecionados.
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library("kableExtra")
+endangered_tabela_1_fhc_scrape_raw_tbl %>% knitr::kable(col.names = c("Item", "%", "Item", "%"), caption = "Tabela 1 (pesquisar como deixar mais bonito)[note]") %>% 
+  kable_styling("striped", full_width = T, position = "center", font_size = 15) %>%
+  add_footnote(c("Fonte: Economia Brasileira Contemporânea, p.580-581", "Tá errado mas foda-se por enquanto"), notation = "number")
+```
+##### Observe que:
+  * Preço dos alimentos aumentou 20%, enquanto que comer fora de casa 50%;
+  * Serviços de oficina mais caros que as peças.
+---
+## separando a tabela Item e X. e salvando.
+```{r}
+#separando as tabelas
+endangered_tabela_1_fhc_scrape_raw_tbl %>% 
+  select(Item, X.) -> tabela_1_fhc_p1
+```
+
+---
+## separando a tabela Item.1 e X..1 e salvando.
+```{r}
+endangered_tabela_1_fhc_scrape_raw_tbl %>% 
+  select(Item.1, X..1) -> tabela_1_fhc_p2
+```
+
+---
+## juntando as duas tabelas
+```{r}
+(full_join(tabela_1_fhc_p1, tabela_1_fhc_p2, by = c("Item" = "Item.1", "X." = "X..1")) -> tabela_1_fhc_f1)
+```
+
+---
+#### Variação de preços acumulada - agosto/1994 a janeiro/1997 - itens selecionados.
+```{r echo=FALSE}
+tabela_1_fhc_f1  %>% mutate(X. = as.character(X.)) %>% arrange(desc(X.)) %>%  knitr::kable(col.names = c("Item", "%"))
+```
+
+

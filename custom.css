@@ -1,0 +1,25 @@
+/*p {
+/*  font-family: Arial Black ; */
+/*  color: green;
+/*}
+
+/*h1 {
+/*    font-family: Arial Black ; */
+/*  color: green;
+/*}
+
+/*h2 {
+/*  color: green;
+/*} */
+
+.remark-slide-number {
+  font-size: 10pt;
+  margin-bottom: -11.6px;
+  margin-right: 10px;
+  color: #FFFFFF; /* white */
+  opacity: 1; /* default: 0.5 */
+}
+
+p {
+  font-size: 5pt;
+}
